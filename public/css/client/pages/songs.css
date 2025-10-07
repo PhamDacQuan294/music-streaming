@@ -187,6 +187,13 @@
   font-weight: 900;
 }
 
+.song-detail .inner-actions .inner-like.active {
+  color: #0059ff;
+}
+
+.song-detail .inner-actions .inner-like.active i {
+  font-weight: 900;
+}
 
 .song-detail .inner-play {
   display: flex;
@@ -258,12 +265,3 @@
   white-space: pre;
 }
 /* End song-detail */
-
-.song-detail .inner-actions .inner-like.active {
-  color: #0059ff;
-}
-
-.song-detail .inner-actions .inner-like.active i {
-  font-weight: 900;
-}
-
