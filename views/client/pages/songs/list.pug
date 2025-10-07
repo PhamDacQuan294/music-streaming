@@ -1,36 +1,30 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
-
 block main
-  .container.my-3
-    .row
-      .col-12
+  div(class="container my-3")
+    div(class="row")
+      div(class="col-12") 
         +box-head(pageTitle)
-   
-    .row.song-list
+
+    div(class="row song-list")
       each song in songs
-        .col-6.col-md-4.col-lg-3.mb-4
-          .song-item
-            .inner-image
+        div(class="col-6 col-md-4 col-lg-3 mb-4")
+          div(class="song-item")
+            div(class="inner-image")
               a(href=`/songs/detail/${song.slug}`)
                 img(src=song.avatar alt=song.title)
-                .overlay
+                div(class="overlay")
                   i(class="fa-solid fa-play")
-            .inner-content
-              .inner-title
+            div(class="inner-content")
+              div(class="inner-title")
                 a(href=`/songs/detail/${song.slug}`)= song.title
-              .inner-singer
+              div(class="inner-singer")
                 i(class="fa-solid fa-microphone-lines")
                 | #{song.infoSinger.fullName}
-              .inner-like
+              div(class="inner-like")
                 i(class="fa-solid fa-thumbs-up")
                 | #{song.like}
-              .inner-time
+              div(class="inner-time")
                 i(class="fa-regular fa-clock")
                 | Hôm nay
-
-
-
-
-

@@ -3,13 +3,13 @@ include ../../mixins/box-head.pug
 
 
 block main
-  .singer-detail
-    .container.my-3
-      .row
-        .col-12
-          .inner-title #{song.title}
+  div(class="singer-detail")
+    div(class="container my-3")
+      div(class="row")
+        div(class="col-12")
+          div(class="inner-title") #{song.title}
 
-          .inner-actions
+          div(class="inner-actions")
             div(class="inner-action inner-time")
               <i class="fa-regular fa-clock"></i> 20/10/2023
             div(class="inner-action inner-singer")
@@ -25,25 +25,25 @@ block main
             div(class=("inner-action inner-heart" + (song.isFavoriteSong ? "active" : "")) button-favorite=song.id)
               <i class="fa-regular fa-heart"></i>  Bài hát yêu thích
 
+          div(class="inner-desc")
+            div(class="inner-label") Mô tả
+            div(class="inner-text") !{song.description}
 
-          .inner-play
-            .inner-avatar
+          div(class="inner-desc")
+            div(class="inner-label") Lời bài hát
+            div(class="inner-text") !{song.lyrics}
+
+block player
+  div(class="singer-detail")
+    div(class="container my-3")
+      div(class="row")
+        div(class="col-12")
+          div(class="inner-play")
+            div(class="inner-avatar")
               img(src=song.avatar)
-            .inner-audio
+            div(class="inner-audio")
               div(
                 id="aplayer"
                 data-song=song
                 data-singer=singer
               )
-
-
-          .inner-desc
-            .inner-label Mô tả
-            .inner-text
-              | !{song.description}
-
-
-          .inner-desc
-            .inner-label Lời bài hát
-            .inner-text
-              | !{song.lyrics}

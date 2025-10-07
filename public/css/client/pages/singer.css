@@ -81,8 +81,12 @@
 
 .singer-detail .inner-play .inner-audio {
   flex: 1;
+  color: #fff;
 }
 
+.singer-detail .inner-play .inner-audio #aplayer {
+  background-color: #2c2438;
+}
 
 .singer-detail .inner-avatar {
   width: 100px;
