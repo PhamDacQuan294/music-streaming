@@ -3,22 +3,20 @@ include ../../mixins/box-head.pug
 
 
 block main
-  .container.my-3
-    .row
-      .col-12
+  div(class="container my-3")
+    div(class="row")
+      div(class="col-12")
         +box-head(pageTitle)
-   
-    .row.topic-list
+    
+    div(class="row")
       each topic in topics
-        .col-6.col-md-4.col-lg-3.mb-4
-          .topic-card
+        div(class="col-lg-3")
+          div(class="topic-card")
             a(href=`/songs/${topic.slug}`)
               img(src=topic.avatar alt=topic.title)
-            .topic-info
-              h5= topic.title
-              p= topic.description
-
-
+            div(class="topic-info")
+              h5 #{topic.title}
+              div !{topic.description}
 
 
 

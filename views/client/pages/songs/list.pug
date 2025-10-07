@@ -7,7 +7,7 @@ block main
       div(class="col-12") 
         +box-head(pageTitle)
 
-    div(class="row song-list")
+    div(class="row")
       each song in songs
         div(class="col-6 col-md-4 col-lg-3 mb-4")
           div(class="song-item")
@@ -19,6 +19,7 @@ block main
             div(class="inner-content")
               div(class="inner-title")
                 a(href=`/songs/detail/${song.slug}`)= song.title
+            div(class="inner-info")
               div(class="inner-singer")
                 i(class="fa-solid fa-microphone-lines")
                 | #{song.infoSinger.fullName}

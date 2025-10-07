@@ -1,9 +1,8 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
-
 block main
-  div(class="singer-detail")
+  div(class="song-detail")
     div(class="container my-3")
       div(class="row")
         div(class="col-12")
@@ -12,7 +11,7 @@ block main
           div(class="inner-actions")
             div(class="inner-action inner-time")
               <i class="fa-regular fa-clock"></i> 20/10/2023
-            div(class="inner-action inner-singer")
+            div(class="inner-action inner-song")
               <i class="fa-solid fa-microphone-lines"></i> #{singer.fullName}
             div(class="inner-action inner-topic")
               <i class="fa-solid fa-music"></i> #{topic.title}
@@ -34,7 +33,7 @@ block main
             div(class="inner-text") !{song.lyrics}
 
 block player
-  div(class="singer-detail")
+  div(class="song-detail")
     div(class="container my-3")
       div(class="row")
         div(class="col-12")
