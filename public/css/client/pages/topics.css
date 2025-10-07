@@ -1,0 +1,83 @@
+/* Layout tổng thể */
+.topic-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+
+/* Card tổng thể */
+.topic-card {
+  background: #1f1f1f;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+
+.topic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(155, 77, 224, 0.4);
+}
+
+
+/* Ảnh trong card */
+.topic-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+
+.topic-card:hover img {
+  transform: scale(1.05);
+}
+
+
+/* Nội dung card */
+.topic-info {
+  padding: 12px 14px;
+}
+
+
+.topic-info h5 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+
+.topic-info p {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* Link */
+.topic-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* Màu chủ đạo Zing MP3 */
+.btn-primary,
+.topic-card:hover h5 {
+  color: #9b4de0;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .topic-card img {
+    height: 150px;
+  }
+}
