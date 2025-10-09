@@ -20,3 +20,32 @@
   text-align: left;
   margin-bottom: 20px;
 }
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+
+body {
+  background-color: #170f23;
+  color: #fff;
+}
+
+
+.app {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row;
+  }
+}
+/* END RESET */

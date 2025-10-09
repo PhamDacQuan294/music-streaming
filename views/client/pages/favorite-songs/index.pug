@@ -1,6 +1,9 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
+block styles
+  link(rel="stylesheet", href="/css/client/pages/favorite-songs.css")
+
 block main
   div(class="container my-3")
     div(class="row")

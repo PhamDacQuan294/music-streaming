@@ -9,14 +9,10 @@ export const index = async (req: Request, res: Response) => {
     deleted: false
   });
 
-  // console.log(favoriteSongs);
-
   for (const item of favoriteSongs) {
     const infoSong = await Song.findOne({
       _id: item.songId
     });
-
-    console.log(infoSong);
 
     const infoSinger = await Singer.findOne({
       _id: infoSong.singerId
