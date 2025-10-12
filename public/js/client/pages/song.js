@@ -62,37 +62,36 @@ if(listButtonFavorite.length > 0) {
 
 // Aplayer
 const aplayer = document.querySelector('#aplayer');
-if(aplayer) {
-  let dataSong = aplayer.getAttribute("data-song");
-  dataSong = JSON.parse(dataSong);
-
-  let dataSinger = aplayer.getAttribute("data-singer");
-  dataSinger = JSON.parse(dataSinger);
-
+if (aplayer) {
+  let dataSong = JSON.parse(aplayer.getAttribute("data-song"));
+  let dataSinger = JSON.parse(aplayer.getAttribute("data-singer"));
 
   const ap = new APlayer({
     container: aplayer,
-    audio: [
-      {
-        name: dataSong.title,
-        artist: dataSinger.fullName,
-        url: dataSong.audio,
-        cover: dataSong.avatar,
-      },
-    ],
-    autoplay: true,
-    volume: 0.8
+    audio: [{
+      name: dataSong.title,
+      artist: dataSinger.fullName,
+      url: dataSong.audio,
+      cover: dataSong.avatar,
+    }],
+    autoplay: false, 
+    volume: 0.8,
   });
 
   const avatar = document.querySelector(".singer-detail .inner-avatar");
 
-  ap.on('play', function () {
-    avatar.style.animationPlayState = "running";
+  ap.on('play', () => {
+    if (avatar) avatar.style.animationPlayState = "running";
   });
 
-  ap.on('pause', function () {
-    avatar.style.animationPlayState = "paused";
+  ap.on('pause', () => {
+    if (avatar) avatar.style.animationPlayState = "paused";
   });
 
+  // Cho phép phát sau khi user click
+  document.addEventListener("click", () => {
+    ap.play();
+  }, { once: true });
 }
+
 // End Aplayer

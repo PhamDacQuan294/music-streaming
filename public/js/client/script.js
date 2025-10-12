@@ -1,1 +1,1 @@
-import './components/header.js';
+import './partials/header.js';
