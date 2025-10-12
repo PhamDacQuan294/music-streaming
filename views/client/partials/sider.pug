@@ -1,31 +1,29 @@
 aside.sidebar
-  div(class="logo")
-    h2
-      span(class="zing") Zing
-      span(class="mp3") mp3
-    p MXH ÂM NHẠC
-
+  div(class="header")
+    div(class="logo")
+      h2
+        span(class="zing") Zing
+        span(class="mp3") mp3
+      p MXH ÂM NHẠC
+    button(class="toggle-btn")
+      i(class="fa-solid fa-bars")
 
   ul(class="menu")
     a(href="/")
       li
-        <i class="fa-solid fa-house"></i> Trang chủ
+        i(class="fa-solid fa-house")
+        span Trang chủ
     a(href="/topics")
       li
-        <i class="fa-solid fa-music"></i> Chủ đề
-    a(href="/favorite-songs") 
-      li 
-        <i class="fa-solid fa-heart"></i> Yêu thích
-
+        i(class="fa-solid fa-music")
+        span Chủ đề
+    a(href="/favorite-songs")
+      li
+        i(class="fa-solid fa-heart")
+        span Yêu thích
 
   div(class="login-box")
     p Đăng nhập để khám phá playlist dành riêng cho bạn
     button Đăng nhập
 
-
   div(class="new-playlist") + Tạo playlist mới
-
-
-
-
-

@@ -81,3 +81,62 @@
   color: #ccc;
   cursor: pointer;
 }
+
+
+.sidebar {
+  width: 240px;
+  background-color: #1a1229;
+  color: #fff;
+  transition: width 0.3s ease;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.toggle-btn {
+  background: #2b2040;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.sidebar.collapsed .toggle-btn i {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.sidebar.collapsed span,
+.sidebar.collapsed p,
+.sidebar.collapsed .login-box,
+.sidebar.collapsed .new-playlist {
+  display: none;
+}
+
+.sidebar ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.sidebar.collapsed ul li {
+  justify-content: center;
+}
+
+.sidebar ul li i {
+  font-size: 18px;
+}
