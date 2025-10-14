@@ -1,0 +1,1 @@
+import './base/tinymce-config.js';
