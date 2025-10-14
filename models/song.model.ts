@@ -7,11 +7,18 @@ const songSchema = new mongoose.Schema(
     description: String,
     singerId: String,
     topicId: String,
-    like: Number,
     lyrics: String,
     audio: String,
     status: String,
     slug: String,
+    like: {
+      type: Number,
+      default: 0
+    },
+    listen: {
+      type: Number,
+      default: 0
+    },
     deleted: {
       type: Boolean,
       default: false,

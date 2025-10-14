@@ -1,5 +1,3 @@
-// End Aplayer
-
 // Button Like
 const buttonLike = document.querySelector("[button-like]");
 if(buttonLike) {
@@ -88,6 +86,21 @@ if (aplayer) {
     if (avatar) avatar.style.animationPlayState = "paused";
   });
 
+  ap.on('ended', function () {
+    const link = `/songs/listen/${dataSong._id}`;
+
+    const option = {
+      method: "PATCH"
+    }
+
+    fetch(link, option)
+      .then(res => res.json())
+      .then(data => {
+        const elementListenSpan = document.querySelector(".song-detail .inner-listen span");
+        elementListenSpan.innerHTML = `${data.listen} lượt nghe`;
+      })
+  });
+
   // Cho phép phát sau khi user click
   document.addEventListener("click", () => {
     ap.play();
@@ -95,3 +108,5 @@ if (aplayer) {
 }
 
 // End Aplayer
+
+
