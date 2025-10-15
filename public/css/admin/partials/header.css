@@ -1,14 +1,30 @@
-/* End Header */
-.header {
-  background: #202020;
-  padding: 10px 0;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-.header .inner-logo a {
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-}
 /* Header */
+.header {
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

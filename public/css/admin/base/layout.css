@@ -1,18 +1,20 @@
-/* Body */
-.body .sider {
-    width: 150px;
-    background: #323232;
-    color: #fff;
-    height: calc(100vh - 56px);
-    position: fixed;
-    top: 56px;
-    left: 0;
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background: #f7f7f7;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-  
-.body .main {
-    margin: 15px;
-    position: relative;
-    left: 150px;
-    width: calc(100% - 180px);
+
+/* Main */
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
-/* End Body */
+
+/* Content */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  background: #f7f7f7;
+}

@@ -1,19 +1,38 @@
-.sider
-  .inner-menu
-    ul
-      li
-        a(href=`/${prefixAdmin}/dashboard`) Tổng quan
-      li
-        a(href=`/${prefixAdmin}/topics`) Quản lý chủ đề
-      li
-        a(href=`/${prefixAdmin}/songs`) Quản lý bài hát
-      li
-        a(href=`/${prefixAdmin}/singers`) Quản lý ca sĩ
-      li
-        a(href=`/${prefixAdmin}/roles/permissions`) Phân quyền
-      li
-        a(href=`/${prefixAdmin}/accounts`) Tài khoản admin
-      li
-        a(href=`/${prefixAdmin}/users`) Tài khoản user
-      li
-        a(href=`/${prefixAdmin}/settings/general`) Cài đặt chung
+aside.sidebar
+  .logo
+    img(src="/images/logo.png", alt="Logo")
+    span Enlink
+
+  ul.menu
+    li.active
+      a(href="/admin/dashboard")
+        i(class="fa-solid fa-chart-pie")
+        |  Tổng quan
+    li
+      a(href="/admin/topics")
+        i(class="fa-solid fa-layer-group")
+        |  Quản lý chủ đề
+    li
+      a(href="/admin/songs")
+        i(class="fa-solid fa-music")
+        |  Quản lý bài hát
+    li
+      a(href="/admin/singers")
+        i(class="fa-solid fa-user-music")
+        |  Quản lý ca sĩ
+    li
+      a(href="/admin/roles")
+        i(class="fa-solid fa-user-shield")
+        |  Phân quyền
+    li
+      a(href="/admin/admins")
+        i(class="fa-solid fa-user-gear")
+        |  Tài khoản admin
+    li
+      a(href="/admin/users")
+        i(class="fa-solid fa-users")
+        |  Tài khoản user
+    li
+      a(href="/admin/settings")
+        i(class="fa-solid fa-gear")
+        |  Cài đặt chung
