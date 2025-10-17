@@ -76,7 +76,7 @@ if (aplayer) {
     volume: 0.8,
   });
 
-  const avatar = document.querySelector(".singer-detail .inner-avatar");
+  const avatar = document.querySelector(".song-detail .inner-avatar");
 
   ap.on('play', () => {
     if (avatar) avatar.style.animationPlayState = "running";
@@ -108,5 +108,6 @@ if (aplayer) {
 }
 
 // End Aplayer
+
 
 
