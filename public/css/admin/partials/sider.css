@@ -63,3 +63,12 @@
   width: 0;
   overflow: hidden;
 }
+
+.sidebar.collapsed .logo,
+.sidebar.collapsed .menu {
+  display: none;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
