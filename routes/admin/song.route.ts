@@ -13,13 +13,25 @@ router.get("/", controller.index);
 router.get("/create", controller.create);
 
 router.post(
-  "/create", 
+  "/create",
   upload.fields([
-    { name: 'avatar', maxCount: 1 }, 
-    { name: 'audio', maxCount: 1 }
+    { name: "avatar", maxCount: 1 },
+    { name: "audio", maxCount: 1 },
   ]),
-  uploadCloud.uploadSingle, 
+  uploadCloud.uploadSingle,
   controller.createPost
+);
+
+router.get("/edit/:id", controller.edit);
+
+router.patch(
+  "/edit/:id",
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "audio", maxCount: 1 },
+  ]),
+  uploadCloud.uploadSingle,
+  controller.editPatch
 );
 
 export const songRoutes: Router = router;
