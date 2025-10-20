@@ -7,44 +7,44 @@ import { systemConfig } from "../../config/config";
 // [GET] /admin/songs
 export const index = async (req: Request, res: Response) => {
   const songs = await Song.find({
-    deleted: false
+    deleted: false,
   });
 
   res.render("admin/pages/songs/index", {
     pageTitle: "Quản lý bài hát",
-    songs: songs
+    songs: songs,
   });
-}
+};
 
 // [GET] /admin/songs/create
 export const create = async (req: Request, res: Response) => {
   const topics = await Topic.find({
     status: "active",
-    deleted: false
+    deleted: false,
   }).select("title");
 
   const singers = await Singer.find({
     status: "active",
-    deleted: false
+    deleted: false,
   }).select("fullName");
 
   res.render("admin/pages/songs/create", {
     pageTitle: "Thêm mới bài hát",
     topics: topics,
-    singers: singers
+    singers: singers,
   });
-}
+};
 
 // [POST] /admin/songs/create
 export const createPost = async (req: Request, res: Response) => {
   let avatar = "";
   let audio = "";
 
-  if(req.body.avatar) {
+  if (req.body.avatar) {
     avatar = req.body.avatar[0];
   }
 
-  if(req.body.audio) {
+  if (req.body.audio) {
     audio = req.body.audio[0];
   }
 
@@ -55,7 +55,8 @@ export const createPost = async (req: Request, res: Response) => {
     description: req.body.description,
     status: req.body.status,
     avatar: avatar,
-    audio: audio
+    audio: audio,
+    lyrics: req.body.lyrics,
   };
 
   const song = new Song(dataSong);
