@@ -1,8 +1,16 @@
 extends ../../layouts/default.pug
+include ../../mixins/filter-status.pug
 
 block main
   h1(class="mb-4") #{pageTitle}
 
+  .card.mb-3 
+    .card-header Bộ lọc và tìm kiếm
+    .card-body 
+      .row 
+        .col-6 
+          +filter-status(filterStatus)
+        .col-6 
   .card.mb-3
     .card-header Danh sách
     .card-body
@@ -62,3 +70,6 @@ block main
                   button-delete
                   data-id=item.id
                 ) Xóa
+
+block script
+  script(type="module" src="/js/admin/base/status-filter.js")
