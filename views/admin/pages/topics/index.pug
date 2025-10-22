@@ -80,7 +80,13 @@ block main
                   data-id=item.id
                 ) Xóa
   +pagination(pagination)
-          
+  
+  form(
+    action=""
+    method="POST"
+    id="form-change-status"
+    data-path=`/${prefixAdmin}/topics/change-status`
+  )
 block script
   script(type="module" src="/js/admin/base/status-filter.js")
   script(type="module" src="/js/admin/base/search.js")
