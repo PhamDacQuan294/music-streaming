@@ -4,6 +4,9 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 
+block styles
+  link(rel="stylesheet", href="/css/admin/pages/topics.css")
+
 block main
   h1(class="mb-4") #{pageTitle}
 
