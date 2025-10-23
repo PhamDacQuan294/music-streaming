@@ -19,7 +19,24 @@ block main
     .card-body
       .row
         .col-8
-
+          form(
+            action=`/${prefixAdmin}/topics/change-multi`
+            method="POST"
+            form-change-multi
+          )
+            .d-flex.align-items-start 
+              .form-group 
+                select(name="type" class="form-control")
+                  option(value="active") Hoạt động
+                  option(value="inactive") Dừng hoạt động
+              .form-group 
+                input(
+                  type="text"
+                  name="ids"
+                  value=""
+                  class="form-control d-none"
+                )
+              button(type="submit" class="btn btn-primary") Áp dụng
         .col-4.text-right
           a(
             href=`/${prefixAdmin}/topics/create`
@@ -28,9 +45,12 @@ block main
 
       table(
         class="table table-hover table-sm"
+        checkbox-multi
       )
         thead
           tr
+            th 
+              input(type="checkbox" name="checkall")
             th STT
             th Hình ảnh
             th Tiêu đề
@@ -39,6 +59,12 @@ block main
         tbody
           each item, index in topics
             tr
+              td 
+                input(
+                  type="checkbox"
+                  name="id"
+                  value=item.id
+                )
               td #{index+1}
               td
                 img(
@@ -91,3 +117,4 @@ block script
   script(type="module" src="/js/admin/base/status-filter.js")
   script(type="module" src="/js/admin/base/search.js")
   script(type="module" src="/js/admin/base/pagination.js")
+  script(type="module" src="/js/admin/base/change.js")
