@@ -4,6 +4,8 @@ import { filterStatus } from "../../helpers/filterStatus";
 import { objectSearh } from "../../helpers/search";
 import { objectPagination } from "../../helpers/pagination";
 
+import { systemConfig } from "../../config/config";
+
 // [GET] /admin/topics
 export const index = async (req: Request, res: Response) => {
   const statusFilters = filterStatus(req.query);
@@ -106,4 +108,27 @@ export const deleteItem = async (req: Request, res: Response) => {
   });
 
   res.redirect(redirectUrl);
+}
+
+
+// [GET] /admin/topics/create
+export const create = (req: Request, res: Response) => {
+  res.render("admin/pages/topics/create", {
+    pageTitle: "Thêm mới sản phẩm"
+  });
+}
+
+// [POST] /admin/topics/create
+export const createPost = async (req: Request, res: Response) => {
+  if(req.body.position == "") {
+    const countProducts = await Topic.countDocuments();
+    req.body.position = countProducts + 1;
+  } else {
+    req.body.position = parseInt(req.body.position);
+  }
+
+  const topic = new Topic(req.body);
+  await topic.save();
+
+  res.redirect(`/${systemConfig.prefixAdmin}/topics`);
 }
