@@ -1,10 +1,10 @@
 // Change status
 const buttonsChangeStatus = document.querySelectorAll("[button-change-status]");
-if(buttonsChangeStatus.length > 0) {
+if (buttonsChangeStatus.length > 0) {
   const formChangeStatus = document.querySelector("#form-change-status");
   const path = formChangeStatus.getAttribute("data-path");
 
-  buttonsChangeStatus.forEach(button => {
+  buttonsChangeStatus.forEach((button) => {
     button.addEventListener("click", () => {
       const statusCurrent = button.getAttribute("data-status");
       const id = button.getAttribute("data-id");
@@ -15,8 +15,10 @@ if(buttonsChangeStatus.length > 0) {
       formChangeStatus.action = action;
 
       const redirectUrl = window.location.pathname + window.location.search;
-      formChangeStatus.action += `?_method=PATCH&redirect=${encodeURIComponent(redirectUrl)}`;
-      
+      formChangeStatus.action += `?_method=PATCH&redirect=${encodeURIComponent(
+        redirectUrl
+      )}`;
+
       formChangeStatus.submit();
     });
   });
@@ -25,17 +27,17 @@ if(buttonsChangeStatus.length > 0) {
 
 // Checkbox Multi
 const checkboxMulti = document.querySelector("[checkbox-multi]");
-if(checkboxMulti) {
+if (checkboxMulti) {
   const inputCheckAll = checkboxMulti.querySelector("input[name='checkall']");
   const inputsId = checkboxMulti.querySelectorAll("input[name='id']");
-  
+
   inputCheckAll.addEventListener("click", () => {
-    if(inputCheckAll.checked) {
-      inputsId.forEach(input => {
+    if (inputCheckAll.checked) {
+      inputsId.forEach((input) => {
         input.checked = true;
       });
     } else {
-      inputsId.forEach(input => {
+      inputsId.forEach((input) => {
         input.checked = false;
       });
     }
@@ -47,7 +49,7 @@ if(checkboxMulti) {
         "input[name='id']:checked"
       ).length;
 
-      if(countChecked == inputsId.length) {
+      if (countChecked == inputsId.length) {
         inputCheckAll.checked = true;
       } else {
         inputCheckAll.checked = false;
@@ -59,7 +61,7 @@ if(checkboxMulti) {
 
 // Form Change Multi
 const formChangeMulti = document.querySelector("[form-change-multi]");
-if(formChangeMulti) {
+if (formChangeMulti) {
   formChangeMulti.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -70,28 +72,38 @@ if(formChangeMulti) {
 
     const typeChange = e.target.elements.type.value;
 
-    if(typeChange == "delete-all") {
+    if (typeChange == "delete-all") {
       const isConfirm = confirm("Bạn có chắc muốn xoá những chủ đề này không?");
 
-      if(!isConfirm) {
+      if (!isConfirm) {
         return;
       }
     }
 
-    if(inputsChecked.length > 0) {
+    if (inputsChecked.length > 0) {
       let ids = [];
       const inputIds = formChangeMulti.querySelector("input[name='ids']");
 
-      inputsChecked.forEach(input => {
+      inputsChecked.forEach((input) => {
         const id = input.value;
-        ids.push(id);
+        if (typeChange == "change-position") {
+          const position = input
+            .closest("tr")
+            .querySelector("input[name='position']").value;
+
+          ids.push(`${id}-${position}`);
+        } else {
+          ids.push(id);
+        }
       });
 
       inputIds.value = ids.join(", ");
 
       const redirectUrl = window.location.pathname + window.location.search;
-      formChangeMulti.action += `?_method=PATCH&redirect=${encodeURIComponent(redirectUrl)}`;
-      
+      formChangeMulti.action += `?_method=PATCH&redirect=${encodeURIComponent(
+        redirectUrl
+      )}`;
+
       formChangeMulti.submit();
     } else {
       alert("Vui lòng chọn ít nhất 1 bản ghi!");

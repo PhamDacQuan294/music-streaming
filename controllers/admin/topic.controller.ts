@@ -11,8 +11,8 @@ export const index = async (req: Request, res: Response) => {
   const statusFilters = filterStatus(req.query);
 
   let find: any = {
-    deleted: false
-  }
+    deleted: false,
+  };
 
   if (req.query.status) {
     find["status"] = req.query.status;
@@ -21,28 +21,29 @@ export const index = async (req: Request, res: Response) => {
   // Search
   const searchObj = objectSearh(req.query);
 
-   if(searchObj) {
+  if (searchObj) {
     find["$or"] = [
       { title: searchObj.keywordRegex },
-      { slug: searchObj.stringSlugRegex }
+      { slug: searchObj.stringSlugRegex },
     ];
   }
 
-   // Pagination
+  // Pagination
   const countTopics = await Topic.countDocuments(find);
 
   let buildPagination = objectPagination(
     {
       currentPage: 1,
       limitItems: 2,
-      skip: 0
+      skip: 0,
     },
     req.query,
     countTopics
-  )
+  );
   // End pagination
 
   const topics = await Topic.find(find)
+    .sort({ position: "desc" })
     .limit(buildPagination.limitItems)
     .skip(buildPagination.skip);
 
@@ -51,9 +52,9 @@ export const index = async (req: Request, res: Response) => {
     topics: topics,
     filterStatus: statusFilters,
     keyword: searchObj ? searchObj.keyword : "",
-    pagination: buildPagination
+    pagination: buildPagination,
   });
-}
+};
 
 // [PATCH] /admin/topics/change-status/:status/:id
 export const changeStatus = async (req: Request, res: Response) => {
@@ -61,15 +62,17 @@ export const changeStatus = async (req: Request, res: Response) => {
   const id: string = req.params.id;
   const redirectUrl: string = req.query.redirect as string;
 
-  await Topic.updateOne({
-    _id: id
-  }, {
-    status: status
-  });
+  await Topic.updateOne(
+    {
+      _id: id,
+    },
+    {
+      status: status,
+    }
+  );
 
   res.redirect(redirectUrl);
-}
-
+};
 
 // [PATCH] /admin/topics/change-multi
 export const changeMulti = async (req: Request, res: Response) => {
@@ -85,42 +88,59 @@ export const changeMulti = async (req: Request, res: Response) => {
       await Topic.updateMany({ _id: { $in: ids } }, { status: "inactive" });
       break;
     case "delete-all":
-      await Topic.updateMany({ _id: { $in: ids } }, {
-        deleted: true,
-        deletedAt: new Date()
-      });
+      await Topic.updateMany(
+        { _id: { $in: ids } },
+        {
+          deleted: true,
+          deletedAt: new Date(),
+        }
+      );
+      break;
+    case "change-position":
+      for (const item of ids) {
+        let [id, position] = item.split("-");
+        position = parseInt(position);
+        await Topic.updateOne(
+          { _id: id },
+          {
+            position: position,
+          }
+        );
+      }
       break;
     default:
       break;
   }
 
   res.redirect(redirectUrl);
-}
+};
 
 // [DELETE] /admin/topics/delete/:id
 export const deleteItem = async (req: Request, res: Response) => {
   const id: string = req.params.id;
   const redirectUrl: string = req.query.redirect as string;
 
-  await Topic.updateOne({ _id: id }, {
-    deleted: true,
-    deletedAt: new Date()
-  });
+  await Topic.updateOne(
+    { _id: id },
+    {
+      deleted: true,
+      deletedAt: new Date(),
+    }
+  );
 
   res.redirect(redirectUrl);
-}
-
+};
 
 // [GET] /admin/topics/create
 export const create = (req: Request, res: Response) => {
   res.render("admin/pages/topics/create", {
-    pageTitle: "Thêm mới sản phẩm"
+    pageTitle: "Thêm mới sản phẩm",
   });
-}
+};
 
 // [POST] /admin/topics/create
 export const createPost = async (req: Request, res: Response) => {
-  if(req.body.position == "") {
+  if (req.body.position == "") {
     const countProducts = await Topic.countDocuments();
     req.body.position = countProducts + 1;
   } else {
@@ -131,4 +151,4 @@ export const createPost = async (req: Request, res: Response) => {
   await topic.save();
 
   res.redirect(`/${systemConfig.prefixAdmin}/topics`);
-}
+};

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import slug from "mongoose-slug-updater";
 
-mongoose.plugin(slug)
+mongoose.plugin(slug);
 
 const topicSchema = new mongoose.Schema(
   {
@@ -9,10 +9,11 @@ const topicSchema = new mongoose.Schema(
     avatar: String,
     description: String,
     status: String,
-    slug: { 
-      type: String, 
+    position: Number,
+    slug: {
+      type: String,
       slug: "title",
-      unique: true
+      unique: true,
     },
     deleted: {
       type: Boolean,
