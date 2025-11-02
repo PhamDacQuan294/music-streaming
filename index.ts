@@ -5,6 +5,9 @@ import clientRoutes from "./routes/client/index.route";
 import adminRoutes from "./routes/admin/index.route";
 import path from "path";
 import methodOverride from "method-override";
+import cookieParser from "cookie-parser";
+import session from "express-session";
+import flash from "express-flash";
 import { systemConfig } from "./config/config";
 
 dotenv.config();
@@ -23,6 +26,12 @@ app.use(express.static("public"));
 
 app.set("views", "./views");
 app.set("view engine", "pug");
+
+// Flash
+app.use(cookieParser("KSOSAOQWPQWPQW"));
+app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(flash());
+// End Flash
 
 // TinyMCE
 app.use(
