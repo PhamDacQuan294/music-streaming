@@ -3,8 +3,8 @@ const router: Router = Router();
 import multer from "multer";
 
 import * as controller from "../../controllers/admin/topic.controller";
-
 import * as uploadCloud from "../../middlewares/admin/uploadCloud.middleware";
+import * as validate from "../../validates/admin/topic.validate";
 
 const upload = multer();
 
@@ -22,6 +22,7 @@ router.post(
   "/create", 
   upload.single("file"),
   uploadCloud.uploadSingle,
+  validate.createPost,
   controller.createPost
 );
 
