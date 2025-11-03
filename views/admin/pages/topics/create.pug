@@ -10,6 +10,7 @@ block main
     action=`/${prefixAdmin}/topics/create`
     id="form-create-topic"
     method="POST"
+    enctype="multipart/form-data"
   )
     div(class="form-group")
       lable(for="title") Tiêu đề
@@ -18,7 +19,6 @@ block main
         class="form-control"
         id="title"
         name="title"
-       
       )
     div(class="form-group")
       lable(for="desc") Mô tả
@@ -56,6 +56,7 @@ block main
         name="position"
         placeholder="Tự động tăng"
         min="1"
+        require
       )
     div(class="form-group form-check form-check-inline")
       input(
@@ -85,3 +86,4 @@ block main
 
 block script
   script(type="module" src="/js/admin/base/upload-image.js")
+  //- script(type="module" src="/js/admin/pages/topic.js")
