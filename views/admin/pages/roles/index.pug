@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 
 block main 
   h1(class="mb-4") Nhóm quyền
-
+  
   .card.mb-3 
     .card-header Danh sách nhóm quyền
     .card-body 
@@ -34,15 +34,22 @@ block main
                 td 
                   a(
                     class="btn btn-secondary btn-sm"
-                    href=`${prefixAdmin}/roles/detail/${item.id}`
+                    href=`/${prefixAdmin}/roles/detail/${item.id}`
                   ) Chi tiết
                   a(
                     class="btn btn-warning btn-sm ml-1"
-                    href=`${prefixAdmin}/roles/edit/${item.id}`
+                    href=`/${prefixAdmin}/roles/edit/${item.id}`
                   ) Sửa
                   button(
                     class="btn btn-danger btn-sm ml-1"
+                    button-delete
+                    data-id=item.id
                   ) Xoá
-          else 
-            tr 
-              td(colspan="4" class="text-center") Chưa có nhóm quyền nào được tạo
+    form(
+      action=""
+      method="POST"
+      id="form-delete-item"
+      data-path=`/${prefixAdmin}/roles/delete`
+    )
+block script
+  script(type="module" src="/js/admin/pages/role.js")
