@@ -3,7 +3,7 @@ const router: Router = Router();
 
 import * as controller from "../../controllers/admin/role.controller";
 
-router.get("/permissions", controller.index);
+router.get("/", controller.index);
 
 router.get("/create", controller.create);
 
@@ -14,5 +14,9 @@ router.get("/edit/:id", controller.edit);
 router.patch("/edit/:id", controller.editPatch);
 
 router.delete("/delete/:id", controller.deleteItem);
+
+router.get("/permissions", controller.permissions);
+
+router.patch("/permissions", controller.permissionsPatch);
 
 export const roleRoutes: Router = router;
