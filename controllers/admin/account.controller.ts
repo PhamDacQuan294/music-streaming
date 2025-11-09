@@ -112,3 +112,18 @@ export const editPatch = async (req: Request, res: Response) => {
 
   res.redirect(`/${systemConfig.prefixAdmin}/accounts/edit/${id}`);
 }
+
+// [DELETE] /admin/accounts/delete/:id
+export const deleteItem = async (req: Request, res: Response) => {
+  const id: string = req.params.id;
+  const redirectUrl: string = req.query.redirect as string;
+
+  await Account.updateOne({ _id: id }, {
+    deleted: true,
+    deletedAt: new Date()
+  });
+
+  (req as any).flash("success", `Đã xoá thành công tài khoản!`);
+
+  res.redirect(redirectUrl);
+}

@@ -66,4 +66,14 @@ block main
                   ) Sửa
                   button(
                     class="btn btn-danger btn-sm ml-1"
+                    button-delete
+                    data-id=item.id
                   ) Xoá
+  form(
+    action=""
+    method="POST"
+    id="form-delete-item"
+    data-path=`/${prefixAdmin}/accounts/delete`
+  )
+block script
+  script(type="module" src="/js/admin/base/deleted.js")

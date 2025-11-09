@@ -28,4 +28,6 @@ router.patch(
   controller.editPatch
 );
 
+router.delete("/delete/:id", controller.deleteItem);
+
 export const accountRoutes: Router = router;
