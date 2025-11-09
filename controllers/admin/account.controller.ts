@@ -127,3 +127,20 @@ export const deleteItem = async (req: Request, res: Response) => {
 
   res.redirect(redirectUrl);
 }
+
+// [PATCH] /admin/accounts/change-status/:status/:id
+export const changeStatus = async (req: Request, res: Response) => {
+  const status: string = req.params.status;
+  const id: string = req.params.id;
+  const redirectUrl: string = req.query.redirect as string;
+
+  await Account.updateOne({
+    _id: id
+  }, {
+    status: status
+  });
+
+  (req as any).flash("success", "Cập nhật trạng thái thành công!");
+
+  res.redirect(redirectUrl);
+}

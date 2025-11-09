@@ -47,13 +47,17 @@ block main
                     a(
                       href="javascript:;"
                       class="badge badge-success"
-                      data-status="active"
+                      data-status=item.status
+                      data-id=item.id
+                      button-change-status
                     ) Hoạt động
                   else 
                     a(
                       href="javascript:;"
                       class="badge badge-danger"
-                      data-status="inactive"
+                      data-status=item.status
+                      data-id=item.id
+                      button-change-status
                     ) Dừng hoạt động
                 td
                   a(
@@ -75,5 +79,13 @@ block main
     id="form-delete-item"
     data-path=`/${prefixAdmin}/accounts/delete`
   )
+
+  form(
+    action=""
+    method="POST"
+    id="form-change-status"
+    data-path=`/${prefixAdmin}/accounts/change-status`
+  )
 block script
   script(type="module" src="/js/admin/base/deleted.js")
+  script(type="module" src="/js/admin/base/change.js")
