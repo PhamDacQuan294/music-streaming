@@ -6,7 +6,7 @@ import md5 from "md5";
 
 // [GET] /admin/auth/login
 export const login = async (req: Request, res: Response) => {
-  if(req.cookies.token) {
+  if (req.cookies.token) {
     res.redirect(`/${systemConfig.prefixAdmin}/dashboard`);
   } else {
     res.render("admin/pages/auth/login", {
@@ -20,7 +20,7 @@ export const loginPost = async (req: Request, res: Response) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
-    
+
     const user = await Account.findOne({
       email: email,
       deleted: false,
@@ -47,9 +47,14 @@ export const loginPost = async (req: Request, res: Response) => {
     }
     res.cookie("token", user.token);
 
-    res.redirect(`/${systemConfig.prefixAdmin}/dashboard`);  
-      
+    res.redirect(`/${systemConfig.prefixAdmin}/dashboard`);
   } catch (error) {
     console.log(error);
   }
+};
+
+// [GET] /admin/auth/logout
+export const logout = async (req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.redirect(`/${systemConfig.prefixAdmin}/auth/login`);
 };
