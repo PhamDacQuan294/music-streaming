@@ -1,9 +1,16 @@
-header.header
-  .header-left
-    button(class="toggle-btn")
-      i(class="fa-solid fa-bars")
-    h3 ADMIN
-
-  .header-right
-    span.user-name Le Van A
-    a(href="/admin/auth/logout", class="logout") Đăng xuất
+header.header 
+  .container-fluid 
+    .row.align-items-center 
+      .col-3 
+        .inner-logo 
+          a(href="/admin/dashboard") ADMIN 
+      .col-9
+        div(class="text-right")
+          a(
+            href=`/admin/my-account`
+            class="btn btn-primary btn-sm mr-2"
+          ) #{user.fullName}
+          a(
+            href=`/admin/auth/logout`
+            class="btn btn-danger btn-sm"
+          ) Dang xuat
