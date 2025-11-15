@@ -5,8 +5,11 @@ import { dashboardRoutes } from "./dashboard.route";
 import { favoriteSongRoutes } from "./favorite-song.route";
 import { searchRoutes } from "./search.route";
 import { userRoutes } from "./user.route";
+import * as userMiddleware from "../../middlewares/client/user.middleware";
 
 const clientRoutes = (app: Express): void => {
+  
+  app.use(userMiddleware.infoUser);
 
   app.use("/", dashboardRoutes);
   
