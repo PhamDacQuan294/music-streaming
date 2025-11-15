@@ -23,8 +23,12 @@ aside.sidebar
         span Yêu thích
 
   div(class="login-box")
-    p Đăng nhập để khám phá playlist dành riêng cho bạn
-    button 
-      a(href="/user/login") Đăng nhập
+    if(user)
+      button 
+        a(href="/user/logout") Đăng xuất
+    else 
+      p Đăng nhập để khám phá playlist dành riêng cho bạn
+      button 
+        a(href="/user/login") Đăng nhập
 
   div(class="new-playlist") + Tạo playlist mới
