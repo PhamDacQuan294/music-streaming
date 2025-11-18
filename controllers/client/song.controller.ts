@@ -3,6 +3,7 @@ import Topic from "../../models/topic.model";
 import Song from "../../models/song.model";
 import Singer from "../../models/singer.model";
 import FavoriteSong from "../../models/favorite-song.model";
+import LikeSong from "../../models/like-song.model";
 
 // [GET] /songs/:slugTopic
 export const list = async (req: Request, res: Response) => {
@@ -63,7 +64,13 @@ export const detail = async (req: Request, res: Response) => {
     songId: song.id
   });
 
+  const likeSong = await LikeSong.findOne({
+    songId: song.id
+  })
+
   song["isFavoriteSong"] = favoriteSong ? true : false;
+
+  song["isLikeSong"] = likeSong ? true : false;
 
   res.render("client/pages/songs/detail", {
     pageTitle: "Chi tiết bài hát",
@@ -77,6 +84,30 @@ export const detail = async (req: Request, res: Response) => {
 export const like = async (req: Request, res: Response) => {
   const idSong: string = req.params.idSong;
   const typeLike: string = req.params.typeLike;
+  const user = res.locals.user;
+
+  switch (typeLike) {
+    case "like":
+      const existLikeSong = await LikeSong.findOne({
+        songId: idSong
+      });
+      if(!existLikeSong) {
+        const record = new LikeSong({
+          userId: user._id,
+          songId: idSong
+        });
+        await record.save();
+      }
+      break;
+    case "dislike":
+      await LikeSong.deleteOne({
+        songId: idSong 
+      });
+      break;
+    
+    default:
+      break;
+  }
 
   const song = await Song.findOne({
     _id: idSong,
@@ -104,6 +135,7 @@ export const like = async (req: Request, res: Response) => {
 export const favorite = async (req: Request, res: Response) => {
   const idSong: string = req.params.idSong;
   const typeFavorite: string = req.params.typeFavorite;
+  const user = res.locals.user;
 
   switch (typeFavorite) {
     case "favorite":
@@ -112,7 +144,7 @@ export const favorite = async (req: Request, res: Response) => {
       });
       if (!existFavoriteSong) {
         const record = new FavoriteSong({
-          // userId: "",
+          userId: user._id,
           songId: idSong
         });
         await record.save();

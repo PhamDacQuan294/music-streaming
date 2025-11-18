@@ -104,15 +104,6 @@ if (aplayer) {
         elementListenSpan.innerHTML = `${data.listen} lượt nghe`;
       });
   });
-
-  // Cho phép phát sau khi user click
-  document.addEventListener(
-    "click",
-    () => {
-      ap.play();
-    },
-    { once: true }
-  );
 }
 
 // End Aplayer
