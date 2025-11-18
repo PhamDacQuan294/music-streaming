@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import flash from "express-flash";
 import { systemConfig } from "./config/config";
+import { notFoundMiddleware } from "./middlewares/client/notFound.middleware";
 
 dotenv.config();
 
@@ -48,6 +49,8 @@ clientRoutes(app);
 
 // Admin Routes
 adminRoutes(app);
+
+app.use(notFoundMiddleware);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

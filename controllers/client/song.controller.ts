@@ -84,14 +84,20 @@ export const detail = async (req: Request, res: Response) => {
 export const like = async (req: Request, res: Response) => {
   const idSong: string = req.params.idSong;
   const typeLike: string = req.params.typeLike;
-  const user = res.locals.user;
+
+  let user = null;
+
+  if (res.locals.user) {
+    user = res.locals.user
+  }
+
 
   switch (typeLike) {
     case "like":
       const existLikeSong = await LikeSong.findOne({
         songId: idSong
       });
-      if(!existLikeSong) {
+      if(!existLikeSong && user != null) {
         const record = new LikeSong({
           userId: user._id,
           songId: idSong
@@ -135,14 +141,19 @@ export const like = async (req: Request, res: Response) => {
 export const favorite = async (req: Request, res: Response) => {
   const idSong: string = req.params.idSong;
   const typeFavorite: string = req.params.typeFavorite;
-  const user = res.locals.user;
+
+  let user = null;
+
+  if (res.locals.user) {
+    user = res.locals.user
+  }
 
   switch (typeFavorite) {
     case "favorite":
       const existFavoriteSong = await FavoriteSong.findOne({
         songId: idSong
       });
-      if (!existFavoriteSong) {
+      if (!existFavoriteSong && user != null) {
         const record = new FavoriteSong({
           userId: user._id,
           songId: idSong
