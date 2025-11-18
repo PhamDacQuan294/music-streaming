@@ -10,9 +10,13 @@ import { authRoutes } from "./auth.route";
 
 import * as authMiddleware from "../../middlewares/admin/auth.middleware";
 import { myAccountRoutes } from "./my-account.route";
+import { settingRoutes } from "./setting.route";
+import * as settingMiddleware from "../../middlewares/client/setting.middleware";
 
 const adminRoutes = (app: Express): void => {
   const PATH_ADMIN = `/${systemConfig.prefixAdmin}`;
+
+  app.use(settingMiddleware.settingGeneral);
 
   app.use(
     `${PATH_ADMIN}/dashboard`,
@@ -35,6 +39,8 @@ const adminRoutes = (app: Express): void => {
     authMiddleware.requireAuth,
     myAccountRoutes
   );
+
+  app.use(PATH_ADMIN + "/settings", authMiddleware.requireAuth, settingRoutes);
 
   app.use(PATH_ADMIN + "/auth", authRoutes);
 };

@@ -1,6 +1,6 @@
 aside.sidebar
   .logo
-    img(src="", alt="Logo")
+    img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
     span Enlink
 
   ul.menu
@@ -12,6 +12,10 @@ aside.sidebar
       a(href="/admin/topics")
         i(class="fa-solid fa-layer-group")
         |  Quản lý chủ đề
+    li
+      a(href="/admin/songs")
+        i(class="fa-solid fa-layer-group")
+        |  Quản lý bài hát
     li  
       a(href=`/${prefixAdmin}/roles/`) 
         i(class="fa-solid fa-user-shield")
@@ -25,10 +29,6 @@ aside.sidebar
         i(class="fa-solid fa-user-gear")
         |  Tài khoản admin
     li
-      a(href="/admin/users")
-        i(class="fa-solid fa-users")
-        |  Tài khoản user
-    li
-      a(href="/admin/settings")
+      a(href="/admin/settings/general")
         i(class="fa-solid fa-gear")
         |  Cài đặt chung
