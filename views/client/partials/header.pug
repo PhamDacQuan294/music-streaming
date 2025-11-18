@@ -19,8 +19,10 @@ header(class="header")
             div(class="inner-list")
 
       div(class="col-3")
-        div(class="actions")
-          a(href="/")
-            div(class="avatar")
-          a(href="/user/register") Đăng ký
+          if (user) 
+            div(class="actions")
+              a(href="/user/info")
+                div(class="avatar")  #{user.fullName}
+          else
+            a(href="/user/register") Đăng ký
 
