@@ -1,7 +1,13 @@
+include ../../mixins/alert.pug
+
 block styles
   link(rel="stylesheet", href="/css/client/pages/user.css")
+  link(rel="stylesheet", href="/css/client/base/showAlert.css")
 
 block main 
+  +alert-error(5000)
+  +alert-success(5000)
+
   .container.my-5 
     .row.justify-content-center 
       .col-8 
@@ -21,3 +27,5 @@ block main
               input.form-control(type="password" id="password" name="password" required)
 
             button.btn-primary(type="submit") Đăng ký
+block script
+  script(type="module" src="/js/client/script.js")
