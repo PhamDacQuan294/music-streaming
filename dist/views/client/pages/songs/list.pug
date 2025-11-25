@@ -1,0 +1,34 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block styles
+  link(rel="stylesheet", href="/css/client/pages/songs.css")
+
+block main
+  div(class="container my-3")
+    div(class="row")
+      div(class="col-12") 
+        +box-head(pageTitle)
+
+    div(class="row")
+      each song in songs
+        div(class="col-6 col-md-4 col-lg-3 mb-4")
+          div(class="song-item")
+            div(class="inner-image")
+              a(href=`/songs/detail/${song.slug}`)
+                img(src=song.avatar alt=song.title)
+                div(class="overlay")
+                  i(class="fa-solid fa-play")
+            div(class="inner-content")
+              div(class="inner-title")
+                a(href=`/songs/detail/${song.slug}`)= song.title
+            div(class="inner-info")
+              div(class="inner-singer")
+                i(class="fa-solid fa-microphone-lines")
+                | #{song.infoSinger.fullName}
+              div(class="inner-like")
+                i(class="fa-solid fa-thumbs-up")
+                | #{song.like}
+              div(class="inner-time")
+                i(class="fa-regular fa-clock")
+                | Hôm nay

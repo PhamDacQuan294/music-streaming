@@ -1,0 +1,31 @@
+include ../../mixins/alert.pug
+
+block styles
+  link(rel="stylesheet", href="/css/client/pages/user.css")
+  link(rel="stylesheet", href="/css/client/base/showAlert.css")
+
+block main 
+  +alert-error(5000)
+  +alert-success(5000)
+
+  .container.my-5 
+    .row.justify-content-center 
+      .col-8 
+        .login-card
+          h1.login-title Đăng kí tài khoản
+          form(action="/user/register" method="POST")
+            .form-group
+              label(for="fullName") Tên
+              input.form-control(type="text" id="fullName" name="fullName" required)
+
+            .form-group
+              label(for="email") Email
+              input.form-control(type="email" id="email" name="email" required)
+
+            .form-group
+              label(for="password") Mật khẩu
+              input.form-control(type="password" id="password" name="password" required)
+
+            button.btn-primary(type="submit") Đăng ký
+block script
+  script(type="module" src="/js/client/script.js")

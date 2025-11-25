@@ -1,0 +1,27 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block styles
+  link(rel="stylesheet", href="/css/client/pages/topics.css")
+
+block main
+  div(class="list-topics")
+    div(class="container")
+      div(class="row")
+        div(class="col-12")
+          +box-head(pageTitle)
+      div(class="row")
+        each topic in topics
+          div(class="col-xl-3 col-lg-4 col-md-6 col-sm-12")
+            div(class="topic-card")
+              a(href=`/songs/${topic.slug}`)
+                div(class="topic-image")
+                  if topic.avatar
+                    img(src=topic.avatar alt=topic.title)
+                  else
+                    div(class="no-image") Không có ảnh
+                div(class="topic-info")
+                  h5 #{topic.title}
+                  div !{topic.description}
+
+

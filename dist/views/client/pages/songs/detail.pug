@@ -1,0 +1,54 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block styles
+  link(rel="stylesheet", href="/css/client/pages/songs.css")
+  
+block main
+  div(class="song-detail")
+    div(class="container my-3")
+      div(class="row")
+        div(class="col-12")
+          div(class="inner-title") #{song.title}
+
+          div(class="inner-actions")
+            div(class="inner-action inner-time")
+              <i class="fa-regular fa-clock"></i> 20/10/2023
+            div(class="inner-action inner-song")
+              <i class="fa-solid fa-microphone-lines"></i> #{singer.fullName}
+            div(class="inner-action inner-topic")
+              <i class="fa-solid fa-music"></i> #{topic.title}
+            div(class="inner-action inner-listen")
+              <i class="fa-solid fa-headphones"></i>
+              span #{song.listen} lượt nghe
+            div(class=("inner-action inner-like" + (song.isLikeSong ? " active" : "")) button-like=song.id)
+              <i class="fa-regular fa-thumbs-up"></i>
+              span #{song.like} thích
+            div(class=("inner-action inner-heart" + (song.isFavoriteSong ? " active" : "")) button-favorite=song.id)
+              <i class="fa-regular fa-heart"></i>  Bài hát yêu thích
+
+          div(class="inner-desc")
+            div(class="inner-label") Mô tả
+            div(class="inner-text") !{song.description}
+
+          div(class="inner-desc")
+            div(class="inner-label") Lời bài hát
+            div(class="inner-text") !{song.lyrics}
+
+block player
+  div(class="song-detail")
+    div(class="container my-3")
+      div(class="row")
+        div(class="col-12")
+          div(class="inner-play")
+            div(class="inner-avatar")
+              img(src=song.avatar)
+            div(class="inner-audio")
+              div(
+                id="aplayer"
+                data-song=song
+                data-singer=singer
+              )
+
+block script
+  script(type="module" src="/js/client/pages/song.js")

@@ -1,0 +1,32 @@
+aside.sidebar
+  div(class="header")
+    div(class="logo")
+      img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
+      p MXH ÂM NHẠC
+    button(class="toggle-btn")
+      i(class="fa-solid fa-bars")
+
+  ul(class="menu")
+    a(href="/")
+      li
+        i(class="fa-solid fa-house")
+        span Trang chủ
+    a(href="/topics")
+      li
+        i(class="fa-solid fa-music")
+        span Chủ đề
+    a(href="/favorite-songs")
+      li
+        i(class="fa-solid fa-heart")
+        span Yêu thích
+
+  div(class="login-box")
+    if(user)
+      button 
+        a(href="/user/logout") Đăng xuất
+    else 
+      p Đăng nhập để khám phá playlist dành riêng cho bạn
+      button 
+        a(href="/user/login") Đăng nhập
+
+  div(class="new-playlist") + Tạo playlist mới

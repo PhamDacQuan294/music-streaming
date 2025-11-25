@@ -1,0 +1,34 @@
+aside.sidebar
+  .logo
+    img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
+    span Enlink
+
+  ul.menu
+    li
+      a(href="/admin/dashboard")
+        i(class="fa-solid fa-chart-pie")
+        |  Tổng quan
+    li
+      a(href="/admin/topics")
+        i(class="fa-solid fa-layer-group")
+        |  Quản lý chủ đề
+    li
+      a(href="/admin/songs")
+        i(class="fa-solid fa-layer-group")
+        |  Quản lý bài hát
+    li  
+      a(href=`/${prefixAdmin}/roles/`) 
+        i(class="fa-solid fa-user-shield")
+        | Nhóm quyền
+    li
+      a(href="/admin/roles/permissions")
+        i(class="fa-solid fa-user-shield")
+        |  Phân quyền
+    li
+      a(href="/admin/accounts")
+        i(class="fa-solid fa-user-gear")
+        |  Tài khoản admin
+    li
+      a(href="/admin/settings/general")
+        i(class="fa-solid fa-gear")
+        |  Cài đặt chung

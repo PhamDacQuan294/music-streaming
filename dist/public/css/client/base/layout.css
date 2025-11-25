@@ -1,0 +1,70 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: #170f23;
+  color: #fff;
+}
+
+/* APP WRAPPER */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+/* END APP WRAPPER */
+
+/* Sidebar */
+.sider {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: #1a1229;
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+/* End Sidebar */
+
+/* Main*/
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* tránh overflow ngang */
+  background-color: #170f23;
+}
+/* End Main*/
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  text-align: center;
+}
+/* End Content */
+
+/* Responsive */
+@media (min-width: 768px) {
+  .app {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 576px) {
+  .app {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 476px) {
+  .app {
+    flex-direction: row;
+  }
+}
+/* Responsive */

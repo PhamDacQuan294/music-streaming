@@ -1,0 +1,28 @@
+header(class="header")
+  div(class="container")
+    div(class="row align-items-center")
+
+      div(class="col-9")
+        div(class="box-search")
+          form(action="/search/result" method="GET")
+            div(class="form-group d-flex mb-0")
+              input(
+                type="text"
+                class="form-control"
+                name="keyword"
+                placeholder="Nhập từ khóa..."
+                value=keyword
+                autocomplete="off"
+              )
+              button(type="submit" class="btn btn-primary") Tìm
+          div(class="inner-suggest")
+            div(class="inner-list")
+
+      div(class="col-3")
+          if (user) 
+            div(class="actions")
+              a(href="/user/info")
+                div(class="avatar")  #{user.fullName}
+          else
+            a(href="/user/register") Đăng ký
+
