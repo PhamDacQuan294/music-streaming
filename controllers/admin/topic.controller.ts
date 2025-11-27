@@ -158,32 +158,36 @@ export const create = (req: Request, res: Response) => {
 
 // [POST] /admin/topics/create
 export const createPost = async (req: Request, res: Response) => {
-  let avatar = "";
+  try {
+    let avatar = "";
 
-  if(req.body.avatar) {
-    avatar = req.body.avatar;
+    if(req.body.avatar) {
+      avatar = Array.isArray(req.body.avatar) ? req.body.avatar[0] : req.body.avatar;
+    }
+
+    if (req.body.position == "") {
+      const countProducts = await Topic.countDocuments();
+      req.body.position = countProducts + 1;
+    } else {
+      req.body.position = parseInt(req.body.position);
+    }
+
+    const dataTopic = {
+      title: req.body.title,
+      description: req.body.description,
+      status: req.body.status,
+      avatar: avatar,
+      position: req.body.position
+    };
+
+    const topic = new Topic(dataTopic);
+
+    await topic.save();
+
+    res.redirect(`/${systemConfig.prefixAdmin}/topics`);
+  } catch (error) {
+    console.log(error);
   }
-
-  if (req.body.position == "") {
-    const countProducts = await Topic.countDocuments();
-    req.body.position = countProducts + 1;
-  } else {
-    req.body.position = parseInt(req.body.position);
-  }
-
-  const dataTopic = {
-    title: req.body.title,
-    description: req.body.description,
-    status: req.body.status,
-    avatar: avatar,
-    position: req.body.position
-  };
-
-  const topic = new Topic(dataTopic);
-
-  await topic.save();
-
-  res.redirect(`/${systemConfig.prefixAdmin}/topics`);
 };
 
 // [GET] /admin/topics/edit/:id 

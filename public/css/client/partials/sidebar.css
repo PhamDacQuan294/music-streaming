@@ -13,6 +13,10 @@
   margin-bottom: 4px;
 }
 
+.sidebar .logo img {
+  width: 100%;
+  height: auto;
+}
 
 .zing { color: #ff5b5b; }
 .mp3 { color: #a56eff; }
