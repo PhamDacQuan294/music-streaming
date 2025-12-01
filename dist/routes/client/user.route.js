@@ -42,7 +42,7 @@ const authMiddleware = __importStar(require("../../middlewares/client/auth.middl
 router.get("/register", controller.register);
 router.post("/register", validate.registerPost, controller.registerPost);
 router.get("/login", controller.login);
-router.post("/login", controller.loginPost);
+router.post("/login", validate.loginPost, controller.loginPost);
 router.get("/logout", controller.logout);
 router.get("/password/forgot", controller.forgotPassword);
 router.post("/password/forgot", controller.forgotPasswordPost);

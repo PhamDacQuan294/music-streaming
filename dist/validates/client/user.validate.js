@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerPost = void 0;
+exports.loginPost = exports.registerPost = void 0;
 const registerPost = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     if (!req.body.fullName) {
         req.flash("error", "Vui lòng nhập họ tên!");
@@ -26,3 +26,15 @@ const registerPost = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
     next();
 });
 exports.registerPost = registerPost;
+const loginPost = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.body.email) {
+        req.flash("error", "Vui lòng nhập email!");
+        return res.redirect("/user/login");
+    }
+    if (!req.body.password) {
+        req.flash("error", "Vui lòng nhập mật khẩu!");
+        return res.redirect("/user/login");
+    }
+    next();
+});
+exports.loginPost = loginPost;

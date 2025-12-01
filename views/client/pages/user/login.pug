@@ -16,14 +16,14 @@ block main
           form(action="/user/login" method="POST")
             .form-group
               label(for="email") Email
-              input.form-control(type="email" id="email" name="email" required)
+              input.form-control(type="email" id="email" name="email")
 
             .form-group
               label(for="password") Mật khẩu
-              input.form-control(type="password" id="password" name="password" required)
+              input.form-control(type="password" id="password" name="password")
 
             button.btn-primary(type="submit") Đăng nhập
 
           a.forgot-link(href="/user/password/forgot") Quên mật khẩu?
 block script
-  script(type="module" src="/js/client/script.js")
+  script(type="module" src="/js/client/base/show-alert.js")
